@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterGuardService } from '../services/router-guard.service';
 import { HelpDetailsComponent } from './help-details/help-details.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { ManageCategoryComponent } from './manage-category/manage-category.component';
 
 const routes: Routes = [{
   path: '',
@@ -19,6 +20,10 @@ const routes: Routes = [{
   }, {
     path: 'users',
     component: ManageUsersComponent,
+    canActivate: [RouterGuardService]
+  }, {
+    path: 'category',
+    component: ManageCategoryComponent,
     canActivate: [RouterGuardService]
   }, {
     path: 'help',
