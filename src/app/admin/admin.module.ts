@@ -12,6 +12,10 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { UsersComponent } from './dialog/users/users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexModule } from '@angular/flex-layout';
+import { ManageCategoryComponent } from './manage-category/manage-category.component';
+import { CategoryComponent } from './dialog/category/category.component';
+import { QuillModule } from 'ngx-quill';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -21,7 +25,9 @@ import { FlexModule } from '@angular/flex-layout';
     HelpDetailsComponent,
     ConfirmationComponent,
     ManageUsersComponent,
-    UsersComponent
+    UsersComponent,
+    ManageCategoryComponent,
+    CategoryComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +36,9 @@ import { FlexModule } from '@angular/flex-layout';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    FlexModule
+    FlexModule,
+    QuillModule.forRoot(),
+    SharedModule
   ]
 })
 export class AdminModule { }
