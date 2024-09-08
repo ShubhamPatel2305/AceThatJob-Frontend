@@ -1,11 +1,13 @@
 import { Component, EventEmitter, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { SnackbarService } from '../../../services/snackbar.service';
-import { ArticleService } from '../../../services/article.service';
-import { ThemeService } from '../../../services/theme.service';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { CategoryService } from '../../../services/category.service';
+import { SnackbarService } from '../../../services/snackbar.service';
+import { AppUserService } from '../../../services/app-user.service';
+import { ThemeService } from '../../../services/theme.service';
+import { ArticleService } from '../../../services/article.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { error } from 'console';
 import { GlobalConstants } from '../../../shared/global-constants';
 
 @Component({
@@ -13,16 +15,16 @@ import { GlobalConstants } from '../../../shared/global-constants';
   templateUrl: './article.component.html',
   styleUrl: './article.component.scss'
 })
-export class ArticleComponent implements OnInit {
-onAddArticle=new EventEmitter();
-onEditArticle=new EventEmitter();
-articleForm:any=FormGroup;
-dialogAction:any="Add";
-action:any="Add";
-categorys:any;
-responseMessage:any;
+export class ArticleComponent implements OnInit{
+  onAddArticle=new EventEmitter();
+  onEditArticle=new EventEmitter();
+  articleForm:any=FormGroup;
+  dialogAction:any="Add";
+  action:any="Add";
+  categorys:any;
+  responseMessage:any;
 
-  constructor(@Inject (MAT_DIALOG_DATA) public dialogData:any,
+  constructor(@Inject(MAT_DIALOG_DATA) public dialogData:any,
   private formBuilder:FormBuilder,
   private dialogRef:MatDialogRef<ArticleComponent>,
   private snackbarService:SnackbarService,
@@ -34,24 +36,22 @@ private categoryService:CategoryService){
   }
 
   ngOnInit(): void {
-    this.articleForm=this.formBuilder.group({
-      title:[null,[Validators.required]],
-      content:[null,[Validators.required]],
-      categoryId:[null,[Validators.required]],
-      status:[null,[Validators.required]]
-    });
-    if(this.dialogData.action==='Edit'){
-      this.dialogAction="Edit";
-      this.action="Update";
-      this.articleForm.patchValue(this.dialogData.data);
-    }
-    
-    this.ngxService.start();
-    this.getAllCategories();
+      this.articleForm=this.formBuilder.group({
+        title:[null,[Validators.required]],
+        content:[null,[Validators.required]],
+        categoryId:[null,[Validators.required]],
+        status:[null,[Validators.required]]
+      });
+      if(this.dialogData.action==='Edit'){
+        this.dialogAction="Edit";
+        this.action="Update";
+        this.articleForm.patchValue(this.dialogData.data);
+      }
+      this.ngxService.start();
+      this.getAllCategory();
   }
-
-  getAllCategories(){
-    this.categoryService.getAllCategory().subscribe((response:any)=>{
+  getAllCategory(){
+    this.categoryService.getAllCategory().subscribe((response)=>{
       this.categorys=response;
       this.ngxService.stop();
     },(error:any)=>{
@@ -67,7 +67,7 @@ private categoryService:CategoryService){
   }
 
   handleSubmit(){
-    if(this.dialogAction=="Edit"){
+    if(this.dialogAction ==="Edit"){
       this.edit();
     }
     else{
@@ -129,5 +129,5 @@ private categoryService:CategoryService){
       this.snackbarService.openSnackbar(this.responseMessage);
     })
   }
-}
 
+}

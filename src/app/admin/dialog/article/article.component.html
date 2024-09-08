@@ -11,50 +11,83 @@
                 <mat-form-field
                     appearance="fill"
                     [color]="themeService.getTheme()"
-                    fxFlex
-                    >
+                    fxFlex>
                     <mat-label>Name</mat-label>
                     <input matInput formControlName="title" required />
-                    
+                    <mat-error
+                        *ngIf="
+                        articleForm.controls.title.touched && articleForm.controls.title.invalid
+                        "
+                    >
+                        <span *ngIf="articleForm.controls.title.errors.required"
+                        >This field is required</span
+                        >
+                        <span *ngIf="articleForm.controls.title.errors.pattern"
+                        >invalid input</span
+                        >
+                    </mat-error>
                 </mat-form-field>
-            </div>
-            <div fxLayout="row wrap">
-                <div fxFlex style="margin:10px">
-                    <quill-editor [styles]="{height:'300px'}" theme="snow" [placeholder]="'Article Content...'" matInput formControlName="content" ></quill-editor>
-                    
+                <div fxLayout="row wrap">
+                    <div fxFlex style="margin:10px">
+                        <quill-editor [styles]="{height:'300px'}" theme="snow" [placeholder]="'Article Content...'" matInput formControlName="content"></quill-editor>
+                        <mat-error
+                        *ngIf="
+                        articleForm.controls.content.touched && articleForm.controls.content.invalid
+                        "
+                    >
+                        <span *ngIf="articleForm.controls.content.errors.required"
+                        >This field is required</span
+                        >
+                        <span *ngIf="articleForm.controls.content.errors.pattern"
+                        >invalid input</span
+                        >
+                    </mat-error>
+                    </div>
                 </div>
-            </div>
-            <div fxLayout="row wrap">
-                <mat-form-field
-                    appearance="fill"
-                    [color]="themeService.getTheme()"
-                    fxFlex
+                <div fxLayout="row wrap">
+                    <mat-form-field
+                        appearance="fill"
+                        [color]="themeService.getTheme()"
+                        fxFlex
+                        >
+                        <mat-label>Category</mat-label>
+                        <mat-select formControlName="categoryId">
+                            <mat-option *ngFor="let category of categorys" [value]="category.id">
+                                {{category.name}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error
+                        *ngIf="
+                        articleForm.controls.categoryId.touched && articleForm.controls.categoryId.invalid
+                        "
                     >
-                    <mat-label>Category</mat-label>
-                    <mat-select formControlName="CategoryId">
-                        <mat-option *ngFor="let category of categorys" [value]="category.id">
-                            {{category.name}}
-                        </mat-option>
-                    </mat-select>
-                    
-                </mat-form-field>
-
-                <mat-form-field
-                    appearance="fill"
-                    [color]="themeService.getTheme()"
-                    fxFlex
-                    >
-                    <mat-label>Status</mat-label>
-                    <mat-select formControlName="status">
-                        <mat-option value="draft">
-                            Draft
-                        </mat-option>
-                        <mat-option value="published">
-                            Publish
-                        </mat-option>
-                    </mat-select>
-                    
-                </mat-form-field>
+                        <span *ngIf="articleForm.controls.categoryId.errors.required"
+                        >This field is required</span
+                        >
+                        <span *ngIf="articleForm.controls.categoryId.errors.pattern"
+                        >invalid input</span
+                        >
+                    </mat-error>
+                        
+                    </mat-form-field>
+    
+                    <mat-form-field
+                        appearance="fill"
+                        [color]="themeService.getTheme()"
+                        fxFlex
+                        >
+                        <mat-label>Status</mat-label>
+                        <mat-select formControlName="status">
+                            <mat-option value="draft">
+                                Draft
+                            </mat-option>
+                            <mat-option value="published">
+                                Publish
+                            </mat-option>
+                        </mat-select>
+                        
+                    </mat-form-field>
+                </div>
             </div>
         </div>
     </form>
@@ -73,3 +106,4 @@
       Close
     </button>
   </mat-dialog-actions>
+

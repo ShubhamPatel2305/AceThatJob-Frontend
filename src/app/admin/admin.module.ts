@@ -14,8 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexModule } from '@angular/flex-layout';
 import { ManageCategoryComponent } from './manage-category/manage-category.component';
 import { CategoryComponent } from './dialog/category/category.component';
-import { QuillModule } from 'ngx-quill';
 import { SharedModule } from '../shared/shared.module';
+import { QuillModule } from 'ngx-quill';
 import { ManageArticleComponent } from './manage-article/manage-article.component';
 import { ArticleComponent } from './dialog/article/article.component';
 import { ViewArticleComponent } from './dialog/view-article/view-article.component';
@@ -33,7 +33,7 @@ import { ViewArticleComponent } from './dialog/view-article/view-article.compone
     CategoryComponent,
     ManageArticleComponent,
     ArticleComponent,
-    ViewArticleComponent
+    ViewArticleComponent,
   ],
   imports: [
     CommonModule,

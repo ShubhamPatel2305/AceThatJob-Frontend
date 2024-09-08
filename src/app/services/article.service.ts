@@ -11,13 +11,13 @@ export class ArticleService {
 
   addNewArticle(data:any){
     return this.httpClient.post(this.url+"/article/addnewarticle",data,{
-      headers:new HttpHeaders().set('Content-Type','application/json')
+      headers:new HttpHeaders().set('Content-Type',"application/json")
     })
   }
 
   updateArticle(data:any){
     return this.httpClient.post(this.url+"/article/updatearticle",data,{
-      headers:new HttpHeaders().set('Content-Type','application/json')
+      headers:new HttpHeaders().set('Content-Type',"application/json")
     })
   }
 

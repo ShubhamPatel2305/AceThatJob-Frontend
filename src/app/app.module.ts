@@ -21,8 +21,8 @@ import {
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { TokenInterceptor } from './services/token.interceptor';
-import { QuillModule } from 'ngx-quill';
 import { SharedModule } from './shared/shared.module';
+import { QuillModule } from 'ngx-quill';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   text: 'Loading...',
@@ -49,8 +49,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MaterialModule,
     HttpClientModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    QuillModule.forRoot(),
-    SharedModule
+    SharedModule,
+    QuillModule.forRoot()
   ],
   providers: [provideClientHydration(), provideAnimationsAsync(), HttpClientModule, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
   bootstrap: [AppComponent],
