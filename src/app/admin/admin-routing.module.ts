@@ -26,7 +26,7 @@ const routes: Routes = [{
     path: 'category',
     component: ManageCategoryComponent,
     canActivate: [RouterGuardService]
-  }, {
+  },{
     path: 'article',
     component: ManageArticleComponent,
     canActivate: [RouterGuardService]

@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { Component, OnInit} from '@angular/core';
 import { ArticleService } from '../../services/article.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SnackbarService } from '../../services/snackbar.service';
-import { Router } from '@angular/router';
 import { ThemeService } from '../../services/theme.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { GlobalConstants } from '../../shared/global-constants';
-import { ConfigurableFocusTrap } from '@angular/cdk/a11y';
 import { ConfirmationComponent } from '../dialog/confirmation/confirmation.component';
 import { ArticleComponent } from '../dialog/article/article.component';
+import { Router } from '@angular/router';
+import { ViewArticleComponent } from '../dialog/view-article/view-article.component';
 
 @Component({
   selector: 'app-manage-article',
@@ -17,40 +17,37 @@ import { ArticleComponent } from '../dialog/article/article.component';
   styleUrl: './manage-article.component.scss'
 })
 export class ManageArticleComponent implements OnInit {
-
-  displayedColumns:string[]=['title','categoryName','status','publication_date','edit'];
+  displayedColumns:string[]=['title','categoryName','status','edit'];
   dataSource:any;
   responseMessage:any;
-
   constructor(private articleService:ArticleService,
     private ngxService:NgxUiLoaderService,
     private dialog:MatDialog,
     private snackbarService:SnackbarService,
     private router:Router,
-    public themeService:ThemeService){}
+    public themeService:ThemeService){
 
-
-  ngOnInit(): void {
-    this.ngxService.start();
-    this.tableData();  
   }
 
+  ngOnInit(): void {
+      this.ngxService.start();
+      this.tableData();
+  }
   tableData(){
     this.articleService.getAllArticle().subscribe((response:any)=>{
       this.ngxService.stop();
       this.dataSource=new MatTableDataSource(response);
-      console.log(this.dataSource);
     },(error)=>{
       this.ngxService.stop();
-      console.log(error);
-      if(error.error?.message){
-        this.responseMessage=error.error?.message;
-      }else{
-        this.responseMessage=GlobalConstants.genericError;
-      }
-      this.snackbarService.openSnackbar(this.responseMessage);
-      })
+    console.log(error);
+    if(error.error?.message){
+      this.responseMessage=error.error?.message;
+    }else{
+      this.responseMessage=GlobalConstants.genericError;
     }
+    this.snackbarService.openSnackbar(this.responseMessage);
+    })
+  }
 
   applyFilter(event:Event){
     const filterValue=(event.target as HTMLInputElement).value;
@@ -74,6 +71,17 @@ export class ManageArticleComponent implements OnInit {
   }
 
   handleViewAction(values:any){
+    const dialogConfig=new MatDialogConfig();
+      dialogConfig.data={
+        action:'View',
+        data:values
+      };
+
+      dialogConfig.width="850px";
+      const dialogRef=this.dialog.open(ViewArticleComponent,dialogConfig);
+      this.router.events.subscribe(()=>{
+        dialogRef.close();
+      });
   }
 
   handleEditAction(values:any){
