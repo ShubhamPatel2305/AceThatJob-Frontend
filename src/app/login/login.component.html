@@ -1,1 +1,39 @@
-<p>login works!</p>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <mat-icon>lock</mat-icon>
+        </div>
+
+        <div style="text-align:center !important; margin-bottom:5px;">Ace That Job</div>
+
+        <form [formGroup]="loginForm">
+            <div fxFlex fxLayout="column">
+                <mat-form-field appearance="outline" fxflex [color]="themeService.getTheme()">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" type="email" required>
+                    <mat-error *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.touched">
+                        <span *ngIf="loginForm.controls.email.errors.required">This field is required</span>
+                        <span *ngIf="loginForm.controls.email.errors.pattern">Please enter a valid email</span>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxflex [color]="themeService.getTheme()">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" type="email" required>
+                    <mat-error *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched">
+                        <span *ngIf="loginForm.controls.password.errors.required">This field is required</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button [disabled]="!(loginForm.valid && loginForm.dirty)" [color]="themeService.getTheme()" (click)="handleSubmit()">Login</button>
+            </div>
+        </form>
+
+        <div class="home-link">
+            <span (click)="onBack()">
+                <span style="color:blue;cursor:pointer;">back</span>
+            </span>
+        </div>
+    </div>
+
+
+</body>

@@ -14,7 +14,7 @@ export class ThemeService {
   }
 
   private applyTheme(theme: string) {
-    const body = document.getElementsByName('body')[0];
+    const body = document.getElementsByTagName('body')[0];
     body.classList.remove('primary-theme', 'accent-theme');
     body.classList.add(`${theme}-theme`);
   }
