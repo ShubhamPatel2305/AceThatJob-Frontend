@@ -25,7 +25,7 @@ export class AppUserService {
    }
 
    getAllAppUsers(){
-    return this.httpClient.get(this.url+"/appuser/getallusers")
+    return this.httpClient.get(this.url + "/appuser/getallusers"); // No need to JSON.stringify here
    }
 
    updateUser(data:any){
