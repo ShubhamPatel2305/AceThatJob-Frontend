@@ -1,0 +1,75 @@
+<mat-toolbar [color]="themeService.getTheme()">
+    <mat-toolbar-row fxLayout="row">
+      <span class="title-center">{{ dialogData.action }} User</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="articleForm">
+        <div fxFlex fxlayout="column">
+            <div fxLayout="row wrap">
+                <mat-form-field
+                    appearance="fill"
+                    [color]="themeService.getTheme()"
+                    fxFlex
+                    >
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="title" required />
+                    
+                </mat-form-field>
+            </div>
+            <div fxLayout="row wrap">
+                <div fxFlex style="margin:10px">
+                    <quill-editor [styles]="{height:'300px'}" theme="snow" [placeholder]="'Article Content...'" matInput formControlName="content" ></quill-editor>
+                    
+                </div>
+            </div>
+            <div fxLayout="row wrap">
+                <mat-form-field
+                    appearance="fill"
+                    [color]="themeService.getTheme()"
+                    fxFlex
+                    >
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName="CategoryId">
+                        <mat-option *ngFor="let category of categorys" [value]="category.id">
+                            {{category.name}}
+                        </mat-option>
+                    </mat-select>
+                    
+                </mat-form-field>
+
+                <mat-form-field
+                    appearance="fill"
+                    [color]="themeService.getTheme()"
+                    fxFlex
+                    >
+                    <mat-label>Status</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option value="draft">
+                            Draft
+                        </mat-option>
+                        <mat-option value="published">
+                            Publish
+                        </mat-option>
+                    </mat-select>
+                    
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+    <button
+      mat-raised-button
+      [color]="themeService.getTheme()"
+      type="submit"
+      (click)="handleSubmit()"
+    >
+      {{ action }}
+    </button>
+    <button mat-raised-button [color]="themeService.getTheme()" mat-dialog-close>
+      Close
+    </button>
+  </mat-dialog-actions>

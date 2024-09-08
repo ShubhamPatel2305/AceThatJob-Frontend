@@ -16,6 +16,9 @@ import { ManageCategoryComponent } from './manage-category/manage-category.compo
 import { CategoryComponent } from './dialog/category/category.component';
 import { QuillModule } from 'ngx-quill';
 import { SharedModule } from '../shared/shared.module';
+import { ManageArticleComponent } from './manage-article/manage-article.component';
+import { ArticleComponent } from './dialog/article/article.component';
+import { ViewArticleComponent } from './dialog/view-article/view-article.component';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { SharedModule } from '../shared/shared.module';
     ManageUsersComponent,
     UsersComponent,
     ManageCategoryComponent,
-    CategoryComponent
+    CategoryComponent,
+    ManageArticleComponent,
+    ArticleComponent,
+    ViewArticleComponent
   ],
   imports: [
     CommonModule,
@@ -37,8 +43,8 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     FlexModule,
-    QuillModule.forRoot(),
-    SharedModule
+    SharedModule,
+    QuillModule.forRoot()
   ]
 })
 export class AdminModule { }
