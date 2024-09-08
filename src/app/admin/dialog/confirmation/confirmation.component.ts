@@ -1,8 +1,6 @@
-import { Component, EventEmitter, Inject, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ThemeService } from '../../../services/theme.service';
-import { MatDialogModule } from '@angular/material/dialog';
-import { NgModule } from '@angular/core';
 
 
 @Component({
@@ -25,7 +23,4 @@ export class ConfirmationComponent implements OnInit {
   handleChangeAction(){
     this.onEmitStatusChange.emit();
   }
-  
-
-
 }
