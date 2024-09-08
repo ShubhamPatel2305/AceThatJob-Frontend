@@ -6,6 +6,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutComponent } from './layout/layout.component';
 import { HelpDetailsComponent } from './help-details/help-details.component';
 import { ConfirmationComponent } from './dialog/confirmation/confirmation.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MaterialModule } from '../shared/material-module';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { ConfirmationComponent } from './dialog/confirmation/confirmation.compon
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    MatDialogModule,
+    MaterialModule
   ]
 })
 export class AdminModule { }

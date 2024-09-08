@@ -20,6 +20,8 @@ import {
 } from 'ngx-ui-loader';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { matDialogAnimations, MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationComponent } from './admin/dialog/confirmation/confirmation.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   text: 'Loading...',
@@ -35,7 +37,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 };
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent],
+  declarations: [AppComponent, HomeComponent, LoginComponent, ConfirmationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -46,6 +48,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MaterialModule,
     HttpClientModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    MatDialogModule
   ],
   providers: [provideClientHydration(), provideAnimationsAsync()],
   bootstrap: [AppComponent],

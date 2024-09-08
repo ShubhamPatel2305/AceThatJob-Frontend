@@ -6,24 +6,24 @@ import { RouterGuardService } from '../services/router-guard.service';
 import { HelpDetailsComponent } from './help-details/help-details.component';
 
 const routes: Routes = [{
-  path:'',
-  component:LayoutComponent,
-  children:[{
-      path:'',
-      component:DashboardComponent
-    },{
-      path:'dashboard',
-      component:DashboardComponent,
-      canActivate:[RouterGuardService]
-    },{
-      path:'help',
-      component:HelpDetailsComponent,
-      canActivate:[RouterGuardService]
-    },{
-      path:'**',
-      component:DashboardComponent,
-      canActivate:[RouterGuardService]
-    }
+  path: '',
+  component: LayoutComponent,
+  children: [{
+    path: '',
+    component: DashboardComponent
+  }, {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [RouterGuardService]
+  }, {
+    path: 'help',
+    component: HelpDetailsComponent,
+    canActivate: [RouterGuardService]
+  }, {
+    path: '**',
+    component: DashboardComponent,
+    canActivate: [RouterGuardService]
+  }
   ]
 }];
 
